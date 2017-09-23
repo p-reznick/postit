@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921201625) do
+ActiveRecord::Schema.define(version: 20170921221255) do
+
+  create_table "categories", force: true do |t|
+    t.string "name"
+  end
 
   create_table "comments", force: true do |t|
     t.text    "body"
@@ -21,6 +25,11 @@ ActiveRecord::Schema.define(version: 20170921201625) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "post_categories", force: true do |t|
+    t.integer "category_id"
+    t.integer "post_id"
+  end
 
   create_table "posts", force: true do |t|
     t.string  "url"
